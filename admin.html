@@ -7,7 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Admin Panel - Asaka tumani MMTB</title>
-    <link rel="stylesheet" href="css/admin.css?v=2">
+    <link rel="stylesheet" href="css/admin.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -33,7 +33,7 @@
                 </button>
             </form>
             <div class="login-footer">
-                <p>Standart: admin / admin123</p>
+                <p></p>
             </div>
         </div>
     </div>
@@ -68,6 +68,12 @@
                 </a>
                 <a href="#" class="nav-item" data-section="news">
                     <i class="fas fa-newspaper"></i> Yangiliklar
+                </a>
+                <a href="#" class="nav-item" data-section="social">
+                    <i class="fas fa-share-alt"></i> Ijtimoiy tarmoqlar
+                </a>
+                <a href="#" class="nav-item" data-section="admins">
+                    <i class="fas fa-user-cog"></i> Adminlar
                 </a>
                 <a href="index.html" class="nav-item">
                     <i class="fas fa-globe"></i> Saytni ko'rish
@@ -346,6 +352,70 @@
                     </table>
                 </div>
             </section>
+
+            <!-- Social Media Section -->
+            <section class="content-section" id="socialSection">
+                <h2><i class="fas fa-share-alt"></i> Ijtimoiy tarmoqlar</h2>
+                <div class="orginfo-card">
+                    <div class="orginfo-header">
+                        <i class="fas fa-share-alt"></i>
+                        <div>
+                            <h3>Ijtimoiy tarmoqlar havolalari</h3>
+                            <p>Sayt pastidagi ikonkalarga bog'langan havolalarni kiriting</p>
+                        </div>
+                    </div>
+                    <div class="orginfo-body">
+                        <form id="socialForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label><i class="fab fa-telegram"></i> Telegram havolasi</label>
+                                    <input type="url" id="socialTelegram" placeholder="https://t.me/username">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fab fa-facebook"></i> Facebook havolasi</label>
+                                    <input type="url" id="socialFacebook" placeholder="https://facebook.com/username">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label><i class="fab fa-instagram"></i> Instagram havolasi</label>
+                                    <input type="url" id="socialInstagram" placeholder="https://instagram.com/username">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fab fa-youtube"></i> YouTube havolasi</label>
+                                    <input type="url" id="socialYoutube" placeholder="https://youtube.com/@channel">
+                                </div>
+                            </div>
+                            <div class="orginfo-save">
+                                <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Saqlash</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Admins Section -->
+            <section class="content-section" id="adminsSection">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-cog"></i> Adminlar</h2>
+                    <button class="btn btn-primary" id="addAdminBtn">
+                        <i class="fas fa-plus"></i> Yangi admin
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Login</th>
+                                <th>Yaratilgan</th>
+                                <th>Amallar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminsTable"></tbody>
+                    </table>
+                </div>
+            </section>
         </main>
     </div>
 
@@ -363,7 +433,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="js/data.js?v=2"></script>
-    <script src="js/admin.js?v=2"></script>
+    <script src="js/data.js?v=3"></script>
+    <script src="js/admin.js?v=3"></script>
 </body>
 </html>

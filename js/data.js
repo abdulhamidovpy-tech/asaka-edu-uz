@@ -1,6 +1,21 @@
 // Data Management with localStorage
 const DataStore = {
     init() {
+        if (!localStorage.getItem('socialLinks')) {
+            localStorage.setItem('socialLinks', JSON.stringify({
+                telegram: '',
+                facebook: '',
+                instagram: '',
+                youtube: ''
+            }));
+        }
+
+        if (!localStorage.getItem('admins')) {
+            localStorage.setItem('admins', JSON.stringify([
+                { id: 1, login: 'admin', password: 'admin123', created: new Date().toISOString().split('T')[0] }
+            ]));
+        }
+
         if (!localStorage.getItem('orgInfo')) {
             localStorage.setItem('orgInfo', JSON.stringify({
                 name: "Asaka tumani MMTB",
@@ -306,6 +321,43 @@ const DataStore = {
 
     updateOrgInfo(data) {
         localStorage.setItem('orgInfo', JSON.stringify(data));
+    },
+
+    getSocialLinks() {
+        return JSON.parse(localStorage.getItem('socialLinks')) || { telegram: '', facebook: '', instagram: '', youtube: '' };
+    },
+
+    updateSocialLinks(data) {
+        localStorage.setItem('socialLinks', JSON.stringify(data));
+    },
+
+    getAdmins() {
+        return JSON.parse(localStorage.getItem('admins')) || [];
+    },
+
+    addAdmin(login, password) {
+        const admins = this.getAdmins();
+        const id = admins.length > 0 ? Math.max(...admins.map(a => a.id)) + 1 : 1;
+        admins.push({ id, login, password, created: new Date().toISOString().split('T')[0] });
+        localStorage.setItem('admins', JSON.stringify(admins));
+    },
+
+    deleteAdmin(id) {
+        const admins = this.getAdmins().filter(a => a.id !== id);
+        localStorage.setItem('admins', JSON.stringify(admins));
+    },
+
+    checkAdmin(login, password) {
+        return this.getAdmins().find(a => a.login === login && a.password === password);
+    },
+
+    updateAdminPassword(id, newPassword) {
+        const admins = this.getAdmins();
+        const admin = admins.find(a => a.id === id);
+        if (admin) {
+            admin.password = newPassword;
+            localStorage.setItem('admins', JSON.stringify(admins));
+        }
     }
 };
 

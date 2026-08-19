@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Asaka tumani MTB - Web Sayt
 
 Maktabgacha va maktab ta'limi bo'limi uchun web sayt
@@ -111,3 +112,6 @@ asaka-edu-uz/
 - Tez yuklanish
 - Oson boshqarish
 - Bepul hosting imkoniyatlari
+=======
+"# asaka-edu-uz" 
+>>>>>>> 73337298b010ba6bf5567c92c91d932aefb91769

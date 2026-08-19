@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     loadStatistics();
     loadOrgInfo();
+    loadSocialLinks();
     loadSchools();
     loadKindergartens();
     loadStaff();
@@ -160,6 +161,15 @@ function loadOrgInfo() {
     el = document.getElementById('heroTitle'); if (el) el.innerHTML = (info.heroTitle || info.name).replace(/\n/g, '<br>');
     el = document.getElementById('heroSubtitle'); if (el) el.textContent = info.heroSubtitle || 'Bolalarimizning yorug\'lik kelajagi uchun birgamiz';
     document.title = (info.headerTitle || info.name) + ' - Maktabgacha va maktab ta\'limi bo\'limi';
+}
+
+// Load Social Links
+function loadSocialLinks() {
+    var links = DataStore.getSocialLinks();
+    var socialLinks = document.querySelectorAll('.social-links a');
+    if (socialLinks.length >= 1 && links.telegram) socialLinks[0].href = links.telegram;
+    if (socialLinks.length >= 2 && links.facebook) socialLinks[1].href = links.facebook;
+    if (socialLinks.length >= 3 && links.instagram) socialLinks[2].href = links.instagram;
 }
 
 // Carousel

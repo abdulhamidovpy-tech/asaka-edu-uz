@@ -12,8 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const username = document.getElementById('loginUsername').value;
             const password = document.getElementById('loginPassword').value;
-            if (username === 'admin' && password === 'admin123') {
+            const admin = DataStore.checkAdmin(username, password);
+            if (admin) {
                 sessionStorage.setItem('adminLoggedIn', 'true');
+                sessionStorage.setItem('adminId', admin.id);
+                sessionStorage.setItem('adminLogin', admin.login);
                 showDashboard();
             } else {
                 alert('Login yoki parol xato!');
@@ -59,6 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('addNewsBtn')?.addEventListener('click', () => openNewsModal());
     document.getElementById('addDepartmentBtn')?.addEventListener('click', () => openDepartmentModal());
     document.getElementById('orgInfoForm')?.addEventListener('submit', saveOrgInfo);
+    document.getElementById('socialForm')?.addEventListener('submit', saveSocialLinks);
+    document.getElementById('addAdminBtn')?.addEventListener('click', openAddAdminModal);
 
     loadDashboard();
 });
@@ -105,7 +110,9 @@ function loadSectionData(section) {
         news: loadNewsTable,
         dashboard: loadDashboard,
         orginfo: loadOrgInfo,
-        departments: loadDepartmentsTable
+        departments: loadDepartmentsTable,
+        social: loadSocialLinks,
+        admins: loadAdminsTable
     };
     if (loaders[section]) loaders[section]();
 }
@@ -741,4 +748,120 @@ function formatDate(dateString) {
     const months = ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr'];
     const d = new Date(dateString);
     return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+}
+
+// ===================== SOCIAL LINKS =====================
+function loadSocialLinks() {
+    const links = DataStore.getSocialLinks();
+    document.getElementById('socialTelegram').value = links.telegram || '';
+    document.getElementById('socialFacebook').value = links.facebook || '';
+    document.getElementById('socialInstagram').value = links.instagram || '';
+    document.getElementById('socialYoutube').value = links.youtube || '';
+}
+
+function saveSocialLinks(e) {
+    e.preventDefault();
+    DataStore.updateSocialLinks({
+        telegram: document.getElementById('socialTelegram').value.trim(),
+        facebook: document.getElementById('socialFacebook').value.trim(),
+        instagram: document.getElementById('socialInstagram').value.trim(),
+        youtube: document.getElementById('socialYoutube').value.trim()
+    });
+    alert('Ijtimoiy tarmoqlar havolalari saqlandi!');
+}
+
+// ===================== ADMINS =====================
+function loadAdminsTable() {
+    const admins = DataStore.getAdmins();
+    document.getElementById('adminsTable').innerHTML = admins.map((a, i) => `
+        <tr>
+            <td>${i + 1}</td>
+            <td><strong>${a.login}</strong></td>
+            <td>${a.created || '-'}</td>
+            <td class="action-btns">
+                <button class="btn btn-primary" onclick="openChangePasswordModal(${a.id}, '${a.login}')"><i class="fas fa-key"></i></button>
+                ${a.login === 'admin' ? '' : `<button class="btn btn-danger" onclick="deleteAdmin(${a.id})"><i class="fas fa-trash"></i></button>`}
+            </td>
+        </tr>
+    `).join('');
+}
+
+function openAddAdminModal() {
+    const modal = document.getElementById('modal');
+    document.getElementById('modalTitle').textContent = 'Yangi admin qo\'shish';
+    document.getElementById('modalBody').innerHTML = `
+        <form id="adminForm">
+            <div class="form-group">
+                <label>Login (foydalanuvchi nomi)</label>
+                <input type="text" id="newAdminLogin" required placeholder="admin2">
+            </div>
+            <div class="form-group">
+                <label>Parol</label>
+                <input type="text" id="newAdminPassword" required placeholder="parol">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="closeModal()">Bekor qilish</button>
+                <button type="submit" class="btn btn-success">Qo'shish</button>
+            </div>
+        </form>
+    `;
+    modal.classList.add('active');
+    document.getElementById('adminForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const login = document.getElementById('newAdminLogin').value.trim();
+        const password = document.getElementById('newAdminPassword').value.trim();
+        if (!login || !password) return alert('Login va parol kiritilishi shart!');
+        const existing = DataStore.getAdmins().find(a => a.login === login);
+        if (existing) return alert('Bunday login allaqachon mavjud!');
+        DataStore.addAdmin(login, password);
+        closeModal();
+        loadAdminsTable();
+        alert('Admin muvaffaqiyatli qo\'shildi!');
+    });
+}
+
+function openChangePasswordModal(id, login) {
+    const modal = document.getElementById('modal');
+    document.getElementById('modalTitle').textContent = login + ' — Parolni o\'zgartirish';
+    document.getElementById('modalBody').innerHTML = `
+        <form id="changePasswordForm">
+            <div class="form-group">
+                <label>Joriy parol</label>
+                <input type="password" id="currentPassword" required>
+            </div>
+            <div class="form-group">
+                <label>Yangi parol</label>
+                <input type="password" id="newPassword" required>
+            </div>
+            <div class="form-group">
+                <label>Yangi parolni tasdiqlash</label>
+                <input type="password" id="confirmPassword" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="closeModal()">Bekor qilish</button>
+                <button type="submit" class="btn btn-success">Saqlash</button>
+            </div>
+        </form>
+    `;
+    modal.classList.add('active');
+    document.getElementById('changePasswordForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const current = document.getElementById('currentPassword').value;
+        const newPass = document.getElementById('newPassword').value;
+        const confirm = document.getElementById('confirmPassword').value;
+        if (newPass !== confirm) return alert('Yangi parollar mos kelmaydi!');
+        if (newPass.length < 4) return alert('Parol kamida 4 ta belgi bo\'lishi kerak!');
+        const admin = DataStore.getAdmins().find(a => a.id === id);
+        if (!admin || admin.password !== current) return alert('Joriy parol xato!');
+        DataStore.updateAdminPassword(id, newPass);
+        closeModal();
+        alert('Parol muvaffaqiyatli o\'zgartirildi!');
+    });
+}
+
+function deleteAdmin(id) {
+    if (confirm('Adminni o\'chirishni xohlaysizmi?')) {
+        DataStore.deleteAdmin(id);
+        loadAdminsTable();
+    }
 }
