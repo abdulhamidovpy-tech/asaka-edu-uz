@@ -1,7 +1,9 @@
 // Admin Panel JavaScript
 let currentModalFile = null;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    await DataStore.load();
+
     if (sessionStorage.getItem('adminLoggedIn')) {
         showDashboard();
     }

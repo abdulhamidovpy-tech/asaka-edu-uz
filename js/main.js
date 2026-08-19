@@ -3,7 +3,9 @@ let selectedFile = null;
 
 const carousels = {};
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    await DataStore.load();
+
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const nav = document.querySelector('.nav');
 
