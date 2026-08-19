@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="theme-color" content="#1e3a5f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Asaka tumani MMTB - Maktabgacha va maktab ta'limi bo'limi</title>
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Logo" onerror="this.style.display='none'">
+                    <div class="logo-text">
+                        <h1 id="headerTitle">Asaka tumani MMTB</h1>
+                        <p id="headerSubtitle">Maktabgacha va maktab ta'limi bo'limi</p>
+                    </div>
+                </div>
+                <nav class="nav">
+                    <a href="#home" class="nav-link active">Bosh sahifa</a>
+                    <a href="#about" class="nav-link">Biz haqimizda</a>
+                    <a href="#schools" class="nav-link">Maktablar</a>
+                    <a href="#kindergartens" class="nav-link">Bog'chalar</a>
+                    <a href="#staff" class="nav-link">Xodimlar</a>
+                    <a href="#news" class="nav-link">Yangiliklar</a>
+                    <a href="#contact" class="nav-link">Kontaktlar</a>
+                </nav>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h2 id="heroTitle">Asaka tumani<br>Maktabgacha va maktab ta'limi bo'limi</h2>
+                    <p id="heroSubtitle">Bolalarimizning yorug'lik kelajagi uchun birgamiz</p>
+                    <a href="#about" class="btn btn-primary">Batafsil</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="statistics">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="stat-number" id="totalSchools">0</div>
+                        <div class="stat-title">Maktablar</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <div class="stat-number" id="totalKindergartens">0</div>
+                        <div class="stat-title">Bog'chalar</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="stat-number" id="totalTeachers">0</div>
+                        <div class="stat-title">O'qituvchilar</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number" id="totalStudents">0</div>
+                        <div class="stat-title">O'quvchilar</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Biz haqimizda</h2>
+                    <p>Tashkilot to'g'risida batafsil ma'lumot</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3 id="orgTitle">Asaka tumani maktabgacha va maktab ta'limi bo'limi</h3>
+                        <p id="orgDesc">Asaka tumani maktabgacha va maktab ta'limi bo'limi tashkil etilganidan buyon tuman aholisiga sifatli ta'lim xizmatini ko'rsatib kelmoqda.</p>
+                        <p id="orgMissionText">Har bir bolaga sifatli ta'lim berish, ularning intellektual va ma'naviy rivojlanishini ta'minlash.</p>
+                        <ul class="about-list">
+                            <li><i class="fas fa-check"></i> Sifatli ta'lim berish</li>
+                            <li><i class="fas fa-check"></i> Zamonaviy o'quv dasturlarini joriy etish</li>
+                            <li><i class="fas fa-check"></i> O'qituvchilar malakasini oshirish</li>
+                            <li><i class="fas fa-check"></i> Ota-onalar bilan hamkorlik</li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <img src="images/about.jpg" alt="Biz haqimizda" onerror="this.src='https://via.placeholder.com/500x400?text=Asaka+MMTB'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schools Section -->
+        <section id="schools" class="section bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Maktablar</h2>
+                    <p>Tumanimizdagi umumta'lim maktablari</p>
+                </div>
+                <div class="carousel-wrapper">
+                    <div class="carousel-container" id="schoolsCarousel">
+                        <div class="carousel-track" id="schoolsList"></div>
+                    </div>
+                    <button class="carousel-btn carousel-prev" id="schoolsPrev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn carousel-next" id="schoolsNext"><i class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-dots" id="schoolsDots"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kindergartens Section -->
+        <section id="kindergartens" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Bog'chalar</h2>
+                    <p>Maktabgacha ta'lim muassasalari</p>
+                </div>
+                <div class="carousel-wrapper">
+                    <div class="carousel-container" id="kindergartensCarousel">
+                        <div class="carousel-track" id="kindergartensList"></div>
+                    </div>
+                    <button class="carousel-btn carousel-prev" id="kindergartensPrev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn carousel-next" id="kindergartensNext"><i class="fas fa-chevron-right"></i></button>
+                    <div class="carousel-dots" id="kindergartensDots"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Staff Section -->
+        <section id="staff" class="section bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Bo'limlar</h2>
+                    <p>Tashkilot bo'limlari va xodimlari</p>
+                </div>
+                <div class="dept-tabs" id="deptTabs"></div>
+                <div class="dept-staff-list" id="deptStaffList">
+                    <p class="no-data">Bo'limni tanlang</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Yangiliklar</h2>
+                    <p>So'nggi yangiliklar va e'lonlar</p>
+                </div>
+                <div class="news-grid" id="newsList">
+                    <!-- News will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Kontaktlar</h2>
+                    <p>Biz bilan bog'laning</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Rahbar</h4>
+                                <p id="contactDirector">Karimov Alisher Karimovich</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Manzil</h4>
+                                <p id="contactAddress">Andijon viloyati, Asaka tumani</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Telefon</h4>
+                                <p id="contactPhone">+998 XX XXX XX XX</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p id="contactEmail">info@asaka-edu.uz</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Ish vaqti</h4>
+                                <p id="contactWorkHours">Dushanba - Juma: 8:00 - 17:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Xabar yuborish</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" placeholder="Ismingiz" required autocomplete="name">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Email (ixtiyoriy)" autocomplete="email">
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Xabaringiz" rows="4" required></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary send-btn">
+                                    <i class="fas fa-paper-plane"></i> Yuborish
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="footerOrgName">Asaka tumani MMTB</h3>
+                    <p id="footerSubtitle">Maktabgacha va maktab ta'limi bo'limi</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Sahifalar</h4>
+                    <ul>
+                        <li><a href="#home">Bosh sahifa</a></li>
+                        <li><a href="#about">Biz haqimizda</a></li>
+                        <li><a href="#schools">Maktablar</a></li>
+                        <li><a href="#kindergartens">Bog'chalar</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Aloqa</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Asaka tumani MMTB. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Call Center Phone Button -->
+    <a href="#contact" class="call-center-btn" title="Biz bilan bog'laning">
+        <div class="call-pulse"></div>
+        <div class="call-pulse delay"></div>
+        <i class="fas fa-phone-alt"></i>
+    </a>
+
+    <script src="js/config.js?v=2"></script>
+    <script src="js/data.js?v=2"></script>
+    <script src="js/main.js?v=2"></script>
+</body>
+</html>
