@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Asaka tumani MMTB - Maktabgacha va maktab ta'limi bo'limi</title>
-    <link rel="stylesheet" href="css/style.css?v=3">
+    <link rel="stylesheet" href="css/style.css?v=4">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -245,6 +245,12 @@
                             <div class="form-group">
                                 <textarea placeholder="Xabaringiz" rows="4" required></textarea>
                             </div>
+                            <div class="form-group">
+                                <label for="imageInput"><i class="fas fa-camera"></i> Rasm (ixtiyoriy)</label>
+                                <input type="file" id="imageInput" accept="image/*">
+                                <span id="imageFileName"></span>
+                                <div id="imagePreview"></div>
+                            </div>
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-primary send-btn">
                                     <i class="fas fa-paper-plane"></i> Yuborish
@@ -295,8 +301,8 @@
         <i class="fas fa-phone-alt"></i>
     </a>
 
-    <script src="js/config.js?v=5"></script>
-    <script src="js/data.js?v=5"></script>
-    <script src="js/main.js?v=5"></script>
+    <script src="js/config.js?v=6"></script>
+    <script src="js/data.js?v=6"></script>
+    <script src="js/main.js?v=6"></script>
 </body>
 </html>
